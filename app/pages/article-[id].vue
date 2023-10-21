@@ -12,6 +12,9 @@
         }),
         meta = computed(() => {
             return store.getMeta
+        }),
+        fetchError = computed(() => {
+            return store.getFetchError
         })
     
     watch(meta, (value) => {
@@ -63,8 +66,10 @@ main.article-page
                 v-else-if="section.type === 'cta_form_block'",
                 :class="{ 'section': index !== 0 }"
             )
-    .container(v-else)
+    .container(v-else-if="!fetchError")
         v-preloader
+    .container(v-else-if="fetchError")
+        v-title(type="h1") Произошла ошибка! <br> Мы уже этим занимаемся
 </template>
 
 <style lang="scss"></style>

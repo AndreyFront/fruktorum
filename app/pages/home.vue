@@ -12,6 +12,9 @@
         }),
         meta = computed(() => {
             return store.getMeta
+        }),
+        fetchError = computed(() => {
+            return store.getFetchError
         })
     
     watch(meta, (value) => {
@@ -28,8 +31,10 @@ main.main-page
                 :class="{ 'section': index !== 0 }",
                 :articles="section.data.articles",
             )
-    .container(v-else)
+    .container(v-else-if="!fetchError")
         v-preloader
+    .container(v-else-if="fetchError")
+        v-title(type="h1") Произошла ошибка! <br> Мы уже этим занимаемся
 </template>
 
 <style lang="scss"></style>
