@@ -45,9 +45,10 @@ section.form-section
                         :rules="validateName"
                     )
                     v-input(
-                        type="phone", 
+                        type="tel", 
                         name="phone", 
-                        placeholder="Телефон"
+                        placeholder="Телефон",
+                        inputmode="tel"
                     )
                     v-input(
                         type="email", 
